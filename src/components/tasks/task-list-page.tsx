@@ -58,33 +58,45 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
   }))
   const { recipe } = getFactoryState()
   const layoutKey = recipe.taskLayouts[task as keyof typeof recipe.taskLayouts] || `${task}-${task === 'listing' ? 'directory' : 'editorial'}`
-  const shellClass = variantShells[layoutKey as keyof typeof variantShells] || 'bg-background'
+  const shellClass =
+    task === 'mediaDistribution'
+      ? 'bg-[#f4f5f7]'
+      : variantShells[layoutKey as keyof typeof variantShells] || 'bg-background'
   const Icon = taskIcons[task] || LayoutGrid
 
   const isDark = ['image-masonry', 'image-portfolio', 'profile-creator'].includes(layoutKey)
-  const ui = isDark
-    ? {
-        muted: 'text-slate-300',
-        panel: 'border border-white/10 bg-white/6',
-        soft: 'border border-white/10 bg-white/5',
-        input: 'border-white/10 bg-white/6 text-white',
-        button: 'bg-white text-slate-950 hover:bg-slate-200',
-      }
-    : layoutKey.startsWith('article') || layoutKey.startsWith('sbm')
+  const ui =
+    task === 'mediaDistribution'
       ? {
-          muted: 'text-[#72594a]',
-          panel: 'border border-[#dbc6b6] bg-white/90',
-          soft: 'border border-[#dbc6b6] bg-[#fff8ef]',
-          input: 'border border-[#dbc6b6] bg-white text-[#2f1d16]',
-          button: 'bg-[#2f1d16] text-[#fff4e4] hover:bg-[#452920]',
+          muted: 'text-[#6B7291]',
+          panel: 'border border-[#d9dee8] bg-white shadow-[0_18px_50px_rgba(38,46,83,0.07)]',
+          soft: 'border border-[#d9dee8] bg-[#f8f9fb]',
+          input: 'border border-[#d9dee8] bg-white text-[#262E53]',
+          button: 'bg-[#3E85BD] text-white hover:bg-[#3576a8]',
         }
-      : {
-          muted: 'text-slate-600',
-          panel: 'border border-slate-200 bg-white',
-          soft: 'border border-slate-200 bg-slate-50',
-          input: 'border border-slate-200 bg-white text-slate-950',
-          button: 'bg-slate-950 text-white hover:bg-slate-800',
-        }
+      : isDark
+        ? {
+            muted: 'text-slate-300',
+            panel: 'border border-white/10 bg-white/6',
+            soft: 'border border-white/10 bg-white/5',
+            input: 'border-white/10 bg-white/6 text-white',
+            button: 'bg-white text-slate-950 hover:bg-slate-200',
+          }
+        : layoutKey.startsWith('article') || layoutKey.startsWith('sbm')
+          ? {
+              muted: 'text-[#72594a]',
+              panel: 'border border-[#dbc6b6] bg-white/90',
+              soft: 'border border-[#dbc6b6] bg-[#fff8ef]',
+              input: 'border border-[#dbc6b6] bg-white text-[#2f1d16]',
+              button: 'bg-[#2f1d16] text-[#fff4e4] hover:bg-[#452920]',
+            }
+          : {
+              muted: 'text-slate-600',
+              panel: 'border border-slate-200 bg-white',
+              soft: 'border border-slate-200 bg-slate-50',
+              input: 'border border-slate-200 bg-white text-slate-950',
+              button: 'bg-slate-950 text-white hover:bg-slate-800',
+            }
 
   return (
     <div className={`min-h-screen ${shellClass}`}>
@@ -109,7 +121,7 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
             ]}
           />
         ) : null}
-        {task === 'article' || task === 'classified' ? (
+        {task === 'article' || task === 'classified' || task === 'mediaDistribution' ? (
           <SchemaJsonLd
             data={{
               '@context': 'https://schema.org',
@@ -147,7 +159,44 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
           </section>
         ) : null}
 
-        {layoutKey === 'article-editorial' || layoutKey === 'article-journal' ? (
+        {task === 'mediaDistribution' && layoutKey === 'article-journal' ? (
+          <section className="mb-12 space-y-8">
+            <div className="overflow-hidden rounded-[1.35rem] bg-[#262E53] px-6 py-10 text-white sm:px-10">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#7BA3C3]">Wire archive</p>
+              <h1 className="mt-4 max-w-3xl font-[family-name:var(--font-display)] text-3xl font-semibold tracking-[-0.03em] sm:text-4xl lg:text-[2.65rem]">
+                {taskConfig?.description || 'Press releases'}
+              </h1>
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#c8d0e4]">
+                Browse by category, narrow the publication window, or search the full index—each release opens with the same structured layout journalists expect.
+              </p>
+            </div>
+            <div className={`rounded-2xl p-6 sm:p-8 ${ui.panel}`}>
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+                <div>
+                  <p className={`text-[11px] font-semibold uppercase tracking-[0.22em] ${ui.muted}`}>Category</p>
+                  <p className="mt-2 max-w-xl text-sm text-[#4a5366]">Server-side filter using the same category metadata as your publishing workflow.</p>
+                </div>
+                <form className="flex w-full max-w-md flex-col gap-3 sm:flex-row sm:items-center" action={taskConfig?.route || '#'} method="get">
+                  <select
+                    name="category"
+                    defaultValue={normalizedCategory}
+                    className={`h-11 w-full rounded-xl px-3 text-sm ${ui.input}`}
+                  >
+                    <option value="all">All categories</option>
+                    {CATEGORY_OPTIONS.map((item) => (
+                      <option key={item.slug} value={item.slug}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                  <button type="submit" className={`h-11 shrink-0 rounded-xl px-6 text-sm font-semibold ${ui.button}`}>
+                    Apply
+                  </button>
+                </form>
+              </div>
+            </div>
+          </section>
+        ) : layoutKey === 'article-editorial' || layoutKey === 'article-journal' ? (
           <section className="mb-12 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
             <div>
               <p className={`text-xs uppercase tracking-[0.3em] ${ui.muted}`}>{taskConfig?.label || task}</p>

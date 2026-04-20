@@ -35,9 +35,7 @@ export const fetchTaskPosts = async (
   options?: { allowMockFallback?: boolean; fresh?: boolean; revalidate?: number }
 ) => {
   const allowMockFallback =
-    options?.allowMockFallback ??
-    (task === "mediaDistribution" ||
-      process.env.NEXT_PUBLIC_USE_MOCK_CONTENT === "true");
+    options?.allowMockFallback ?? process.env.NEXT_PUBLIC_USE_MOCK_CONTENT === "true";
   const type = getTaskContentType(task);
   const effectiveRevalidate =
     options?.fresh === true ? undefined : (options?.revalidate ?? 120);
@@ -83,9 +81,7 @@ export const fetchTaskPosts = async (
 };
 
 export const fetchTaskPostBySlug = async (task: TaskKey, slug: string) => {
-  const allowMockFallback =
-    task === "mediaDistribution" ||
-    process.env.NEXT_PUBLIC_USE_MOCK_CONTENT === "true";
+  const allowMockFallback = process.env.NEXT_PUBLIC_USE_MOCK_CONTENT === "true";
   const type = getTaskContentType(task);
   const resolveFromFeed = (feed: SiteFeed<SitePost> | null) =>
     feed?.posts.find((post) => post.slug === slug && getPostType(post) === type) || null;

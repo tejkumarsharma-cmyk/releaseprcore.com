@@ -1,9 +1,9 @@
 export const siteTaskDefinitions = [
   {
     key: 'mediaDistribution',
-    label: 'Updates',
+    label: 'Press releases',
     route: '/updates',
-    description: 'Recent posts and newsroom updates.',
+    description: 'Official announcements, filings, and media-ready stories.',
     contentType: 'mediaDistribution',
     enabled: true,
   },

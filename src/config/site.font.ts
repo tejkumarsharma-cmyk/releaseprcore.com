@@ -1,37 +1,19 @@
 export type SiteFontConfig = {
-  /**
-   * Primary body font family from Google Fonts.
-   * Example: "Inter", "Poppins", "Manrope"
-   */
   sansFamily: string
-  /**
-   * Heading/display font family from Google Fonts.
-   * Example: "Playfair Display", "Merriweather", "Fraunces"
-   */
   displayFamily: string
-  /**
-   * Optional mono font from Google Fonts.
-   */
   monoFamily?: string
-  /**
-   * Requested weights for each font family.
-   */
   sansWeights?: number[]
   displayWeights?: number[]
   monoWeights?: number[]
 }
 
-/**
- * Central font switch:
- * Change only these values to update typography site-wide.
- */
 export const SITE_FONT_CONFIG: SiteFontConfig = {
-  sansFamily: 'Manrope',
-  displayFamily: 'Fraunces',
-  monoFamily: 'JetBrains Mono',
-  sansWeights: [400, 500, 600, 700, 800],
-  displayWeights: [400, 500, 600, 700],
-  monoWeights: [400, 500, 700],
+  sansFamily: 'Inter',
+  displayFamily: 'Plus Jakarta Sans',
+  monoFamily: 'IBM Plex Mono',
+  sansWeights: [400, 500, 600, 700],
+  displayWeights: [500, 600, 700, 800],
+  monoWeights: [400, 500, 600],
 }
 
 const normalizeWeights = (weights?: number[]) => {

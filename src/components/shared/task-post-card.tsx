@@ -183,6 +183,48 @@ export function TaskPostCard({
     )
   }
 
+  if (variant === 'mediaDistribution') {
+    return (
+      <Link
+        href={href}
+        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#e2e6ef] bg-white shadow-[0_12px_40px_rgba(38,46,83,0.07)] transition duration-300 hover:-translate-y-0.5 hover:border-[#3E85BD]/35 hover:shadow-[0_18px_50px_rgba(38,46,83,0.12)]"
+      >
+        <div className="relative aspect-[16/10] overflow-hidden bg-[#e8ebf2]">
+          <ContentImage
+            src={image}
+            alt={altText}
+            fill
+            sizes={imageSizes}
+            quality={75}
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            intrinsicWidth={960}
+            intrinsicHeight={720}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#262E53]/50 via-[#262E53]/5 to-transparent" />
+          <span className="absolute left-3 top-3 rounded-full bg-white/92 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#262E53] shadow-sm">
+            {category}
+          </span>
+        </div>
+        <div className="flex flex-1 flex-col p-5">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#6B7291]">
+            {post.publishedAt
+              ? new Date(post.publishedAt).toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric',
+                })
+              : 'Press release'}
+          </p>
+          <h3 className="mt-2 line-clamp-2 text-lg font-semibold leading-snug text-[#262E53] group-hover:text-[#3E85BD]">{post.title}</h3>
+          <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-[#5c6478]">
+            {getExcerpt(content.description || post.summary) || 'Open the release for the full narrative.'}
+          </p>
+          <div className="mt-auto pt-4 text-sm font-semibold text-[#3E85BD]">Read release</div>
+        </div>
+      </Link>
+    )
+  }
+
   return (
     <Link href={href} className={`group flex h-full flex-col overflow-hidden transition duration-300 ${visualVariant.frame}`}>
       <div className={`relative ${imageAspect} overflow-hidden bg-[#ede2dc]`}>

@@ -2,80 +2,80 @@ import type { TaskKey } from '@/lib/site-config'
 
 export const siteContent = {
   navbar: {
-    tagline: 'Independent news desk',
+    tagline: 'Press distribution platform',
   },
   footer: {
-    tagline: 'Simple publishing for press-style updates',
+    tagline: 'Structured releases, accountable publishing, distribution-ready output.',
   },
   hero: {
-    badge: 'Latest updates',
-    title: ['Clear publishing, simple reading, no extra noise.'],
+    badge: 'Press wire',
+    title: ['Distribute your news with editorial-grade clarity.'],
     description:
-      'A minimal article-style publishing template built for regular updates, announcements, and media distribution posts.',
+      'Publish announcements that read well in feeds, inboxes, and syndicated surfaces—without losing the structure journalists expect.',
     primaryCta: {
-      label: 'Browse latest posts',
+      label: 'Browse press releases',
       href: '/updates',
     },
     secondaryCta: {
-      label: 'Contact us',
+      label: 'Contact',
       href: '/contact',
     },
-    searchPlaceholder: 'Search posts',
+    searchPlaceholder: 'Search releases',
     focusLabel: 'Latest',
-    featureCardBadge: 'editor note',
-    featureCardTitle: 'Recent updates appear directly on the homepage.',
+    featureCardBadge: 'Desk note',
+    featureCardTitle: 'Releases stay readable from headline to body.',
     featureCardDescription:
-      'The homepage works as a clean front page so new posts stay visible without decorative sections getting in the way.',
+      'Categories, timestamps, and summaries are surfaced consistently so scanners and long readers both get what they need.',
   },
   home: {
     metadata: {
-      title: 'Latest updates and newsroom posts',
+      title: 'Press releases and official announcements',
       description:
-        'Read the latest updates, announcements, and stories through a simple archive-first publishing experience.',
-      openGraphTitle: 'Latest updates and newsroom posts',
+        'Browse the latest press releases from releaseprCore—structured stories built for professional distribution.',
+      openGraphTitle: 'Press releases and official announcements',
       openGraphDescription:
-        'A simple publishing template for updates, announcements, and readable article pages.',
-      keywords: ['newsroom posts', 'latest updates', 'announcements', 'press articles'],
+        'National-style press distribution with clean typography, accountable metadata, and archive-friendly layouts.',
+      keywords: ['press release', 'media distribution', 'announcements', 'releaseprCore', 'newsroom'],
     },
-    introBadge: 'About',
-    introTitle: 'A quiet publishing template made for regular updates.',
+    introBadge: 'Why teams use releaseprCore',
+    introTitle: 'Built for disclosure, earnings, launches, and regulated updates.',
     introParagraphs: [
-      'This template is designed for sites that publish straightforward updates and want the homepage to behave like a clean front page rather than a product landing page.',
-      'Posts are visible immediately, archives stay easy to scan, and the reading page keeps the focus on the article itself.',
-      'The interface is intentionally simple so the site feels usable, familiar, and fast to update.',
+      'The interface favors clarity: strong headlines, disciplined summaries, and article pages that stay legible on every device.',
+      'Archives are easy to filter so readers can move by topic or date without hunting through unrelated tasks.',
+      'The system stays compatible with the full product surface—other routes remain available even when the homepage emphasizes press.',
     ],
-    sideBadge: 'What it prioritizes',
+    sideBadge: 'What you get',
     sidePoints: [
-      'Recent posts directly on the homepage.',
-      'Simple archive layout with sidebar search and recent items.',
-      'Readable article pages without comments or extra modules.',
-      'A publishing-first structure that stays easy to maintain.',
+      'Syndication-friendly article layout with featured imagery support.',
+      'Category filters and search that respect the same metadata as your CMS.',
+      'Pricing and contact surfaces that match the rest of the brand system.',
+      'Fast, accessible pages with lightweight motion—not heavy scripts.',
     ],
     primaryLink: {
-      label: 'Open archive',
+      label: 'Open the archive',
       href: '/updates',
     },
     secondaryLink: {
-      label: 'Contact desk',
+      label: 'Talk to us',
       href: '/contact',
     },
   },
   cta: {
-    badge: 'Get in touch',
-    title: 'Use this template when publishing regular updates matters more than visual effects.',
+    badge: 'Ready when you are',
+    title: 'Need a walkthrough of plans, add-ons, or compliance-friendly workflows?',
     description:
-      'A straightforward layout for announcements, media coverage, partner updates, and newsroom-style content.',
+      'Reach the team for distribution questions, media contacts, or enterprise options. We respond with clear next steps—no generic queues.',
     primaryCta: {
-      label: 'Contact us',
+      label: 'Contact',
       href: '/contact',
     },
     secondaryCta: {
-      label: 'View archive',
-      href: '/updates',
+      label: 'View pricing',
+      href: '/pricing',
     },
   },
-  taskSectionHeading: 'Latest posts',
-  taskSectionDescriptionSuffix: 'Read the newest published updates.',
+  taskSectionHeading: 'Latest releases',
+  taskSectionDescriptionSuffix: 'Newest published items from the wire.',
 } as const
 
 export const taskPageMetadata: Record<Exclude<TaskKey, 'comment' | 'org' | 'social'>, { title: string; description: string }> = {
@@ -108,8 +108,8 @@ export const taskPageMetadata: Record<Exclude<TaskKey, 'comment' | 'org' | 'soci
     description: 'Open PDFs and downloadable files.',
   },
   mediaDistribution: {
-    title: 'Latest updates',
-    description: 'Read the latest published updates and announcements.',
+    title: 'Press releases',
+    description: 'Search and filter official announcements and media-ready stories.',
   },
 }
 
@@ -128,13 +128,14 @@ export const taskIntroCopy: Record<
   comment: { title: 'Comments', paragraphs: ['Commentary and response posts.'], links: [{ label: 'Home', href: '/' }] },
   org: { title: 'Organizations', paragraphs: ['Organization pages and entities.'], links: [{ label: 'Home', href: '/' }] },
   mediaDistribution: {
-    title: 'Latest updates',
+    title: 'Press release archive',
     paragraphs: [
-      'This archive is designed for straightforward publishing: regular updates, announcements, and media-style posts presented in a clean reading format.',
-      'The layout stays simple so visitors can scan headlines quickly, open stories easily, and move through the archive without distraction.',
+      'Scan headlines, filter by category, or jump into a full release page for complete context and media contacts.',
+      'Every item keeps the same structured fields your team publishes from the dashboard—dates, authors, and categories stay aligned.',
     ],
     links: [
       { label: 'Home', href: '/' },
+      { label: 'Pricing', href: '/pricing' },
       { label: 'Contact', href: '/contact' },
     ],
   },
